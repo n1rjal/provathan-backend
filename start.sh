@@ -1,6 +1,6 @@
 python -m venv virtualenv
 source virtualenv/Scripts/activate
-echo Do you have packages installed ?
+echo Do you have packages installed [Y/N]?
 read bool
 if [ $bool == [Nn] ]
 then
