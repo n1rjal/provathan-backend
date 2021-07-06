@@ -2,7 +2,7 @@
 
 ### Link to machine learning ipynb
 
-[Open Notebook. Click here](https://github.com/n1rjal/provathan-backend/blob/master/Provathan_Keras.ipynb)
+[📓📓📓📓📓📓 Open Notebook. Click here](https://github.com/n1rjal/provathan-backend/blob/master/rheumatoid_arthritis.ipynb)
 
 ### Pre-requisites
 
