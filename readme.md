@@ -1,5 +1,9 @@
 ## Provathan Backend
 
+### Link to machine learning ipynb
+
+[Open Notebook. Click here](https://github.com/n1rjal/provathan-backend/blob/master/Provathan_Keras.ipynb)
+
 ### Pre-requisites
 
 To begin running the project in your local machine.
