@@ -15,7 +15,6 @@ Open up your **terminal** or **git bash in windows** and run the start.sh script
 ```bash
 chmod +X start.sh
 ./start.sh
-python -m venv virtualenv
 ```
 
 ### Using the Api
@@ -28,7 +27,7 @@ curl -H -i "Content-Type:Application/json" -d ' { "sp02":60, "temperature":102, 
 
 ### Afterwards
 
-> You can also delete using folder structure
+> You can also delete using explorer
 
 After you are done with the API, you can delete project
 
