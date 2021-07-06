@@ -21,77 +21,41 @@ def get_risk_label(risk):
         return "Severe Risk"
 
 
+# the model in the server has 300 epoch
 class ProvathanModel:
     def __init__(self, model_path, min_max_path):
         self.MinMaxScalar = joblib.load(min_max_path)
-        self.MinMaxScalar.clip = False
         self.model = keras.models.load_model(model_path)
 
-    def predict(self, sp02, temperature, CRP, HMG, WBC, PC, KD, HD, AD, RD):
-        """
-        Argument List
-        -------------
-        SP02 level: float
-        Range: [ 30-100 ]
-        Oxygen level in Blood
-
-        Temperature: float
-        Range: [96.0 - 106.0 ]
-        Temperature of Human Body
-
-        C-reactive protein: float
-        Range: [ 0.0 - 5.0 ]
-        C reactive portien (in mg/L)
-
-        HMG: float
-        Range: [ 13.5 - 18.0 ]
-        Haemoglobin count in gm/dL
-
-        WBC: float
-        Range: [ 4.0 - 10.5 ]
-        WBC count WBCs in the blood in WBCs per microliter
-
-        PC: int
-        Range: [ 150 - 450 ]
-
-        KD: bool
-        Has kidney Disease
-        True or False
-
-        HD: bool
-        Has any kind of heart disease
-        True or False
-
-        AD: bool
-        Has any kind of auto immunity disease
-        True or False
-
-        RD: bool
-        Has any kind of Respiratory disease
-        True or False
-        """
-
+    def predict(self, gender, age, CCP, RF, CRP, HAD, UA, ESR, RBC, WBC, HMC, HMG, PLT):
+        if gender == "M":
+            gender = True
+        else:
+            gender = False
         input = pd.DataFrame(
             {
-                "sp02": [sp02],
-                "temperature": [temperature],
+                "gender": [gender],
+                "age": [age],
+                "CCP antibodies": [CCP],
+                "RF": [RF],
                 "C-reactive protein": [CRP],
-                "haemoglobin": [HMG],
-                "wbc_count": [WBC],
-                "platelet count": [PC],
-                "kidney disease": [KD],
-                "heart disease": [HD],
-                "auto immunity disease": [AD],
-                "respiratory disease": [RD],
+                "Heredity Arthritis Disease": [HAD],
+                "Uric Acid": [UA],
+                "Erythrocyte sedimentation rate": [ESR],
+                "RBC": [RBC],
+                "WBC": [WBC],
+                "Hematocrit": [HMC],
+                "Hemoglobin": [HMG],
+                "Platelets": [PLT],
             }
         ).astype("float32")
 
         normalized_input = self.MinMaxScalar.transform(input)
         result = self.model.predict(normalized_input)
-        return round(float(result), 4)
+        return float(result)
 
 
 ProvathanModelInstance = ProvathanModel(
-    model_path="./provathan_backend/DL/provathan model.h5",
+    model_path="./provathan_backend/DL/ra.h5",
     min_max_path="./provathan_backend/DL/minmax.pkl",
 )

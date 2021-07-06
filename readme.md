@@ -26,7 +26,7 @@ chmod +X start.sh
 Open up another **terminal** or **git bash in windows** and run the command
 
 ```bash
-curl -H -i "Content-Type:Application/json" -d ' { "sp02":60, "temperature":102, "CRP":4.0, "HMG":17.5, "WBC":7.5, "PC":150, "KD":false, "HD":false, "RD":true, "AD":true } ' localhost:8000/calculate/
+curl -H -i "Content-Type:Application/json" -d ' { "sp02":60, "temperature":102, "CRP":4.0, "HMG":17.5, "WBC":7.5, "PC":150, "KD":false, "HD":false, "RD":true, "AD":true } ' http://127.0.0.1:8000/calculate/
 ```
 
 ### Afterwards
