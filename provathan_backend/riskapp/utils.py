@@ -11,20 +11,20 @@ import joblib
 
 
 def get_risk_label(risk):
-    if risk < 40:
+    if risk < 50:
         return "Low Risk"
-    elif risk > 40 and risk < 60:
+    elif risk > 50 and risk < 70:
         return "Medium Risk"
-    elif risk > 60 and risk < 70:
+    elif risk > 70 and risk < 90:
         return "High Risk"
-    elif risk > 70 and risk < 100:
+    elif risk > 90 and risk < 100:
         return "Severe Risk"
 
 
-# the model in the server has 300 epoch
 class ProvathanModel:
     def __init__(self, model_path, min_max_path):
         self.MinMaxScalar = joblib.load(min_max_path)
+        self.MinMaxScalar.clip = False
         self.model = keras.models.load_model(model_path)
 
     def predict(self, gender, age, CCP, RF, CRP, HAD, UA, ESR, RBC, WBC, HMC, HMG, PLT):
